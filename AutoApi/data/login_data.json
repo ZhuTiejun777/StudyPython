@@ -1,0 +1,26 @@
+{
+  "test_login_success":{
+    "test_login":"test_login_success", //删掉
+    "username":"13800001111",
+    "password":"123456",
+    "verify_code":"8888",
+    "status":1,
+    "msg":"登陆成功"
+},
+  "test_login_wrong_username":{
+    "test_login":"test_login_wrong_username", //删掉
+    "username":"13800001122",
+    "password":"123456",
+    "verify_code":"8888",
+    "status":-1,
+    "msg":"账号不存在!"
+  },
+  "test_login_wrong_password":{
+    "test_login":"test_login_wrong_password", //删掉
+    "username":"13800001111",
+    "password":"123456789",
+    "verify_code":"8888",
+    "status":-2,
+    "msg":"密码错误!"
+  }
+}
