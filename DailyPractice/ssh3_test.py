@@ -59,26 +59,26 @@ class SSHConnection(object):
 
     # # sftp = paramiko.SFTPClient.from_transport(transport) 获取到transport类,创建连接
     # # 本地路径,目标路径
-    # def upload(self, local_path, target_path):
-    #     # 连接，上传
-    #     sftp = paramiko.SFTPClient.from_transport(self.__transport)
-    #     # 将location.py 上传至服务器 /tmp/test.py
-    #     sftp.put(local_path, target_path)
-    #     print(os.stat(local_path).st_mode)
-    #     # 增加权限
-    #     sftp.chmod(target_path, os.stat(local_path).st_mode)
-    #     sftp.chmod(target_path, 0o755)
-    #     # 注意这里的权限是八进制的，八进制需要使用0o作 为前缀
-    #
-    # #sftp = paramiko.SFTPClient.from_transport(transport) 获取到transport类,创建连接
-    # # 目标路径,本地路径
-    # def download(self, target_path, local_path):
-    #     # 连接，下载
-    #     sftp = paramiko.SFTPClient.from_transport(self.__transport)
-    #     # 将location.py 下载至服务器 /tmp/test.py
-    #     sftp.get(target_path, local_path)
+    def upload(self, local_path, target_path):
+        # 连接，上传
+        sftp = paramiko.SFTPClient.from_transport(self.__transport)
+        # 将location.py 上传至服务器 /tmp/test.py
+        sftp.put(local_path, target_path)
+        print(os.stat(local_path).st_mode)
+        # 增加权限
+        sftp.chmod(target_path, os.stat(local_path).st_mode)
+        sftp.chmod(target_path, 0o755)
+        # 注意这里的权限是八进制的，八进制需要使用0o作 为前缀
 
-    # 销毁
+    #sftp = paramiko.SFTPClient.from_transport(transport) 获取到transport类,创建连接
+    # 目标路径,本地路径
+    def download(self, target_path, local_path):
+        # 连接，下载
+        sftp = paramiko.SFTPClient.from_transport(self.__transport)
+        # 将location.py 下载至服务器 /tmp/test.py
+        sftp.get(target_path, local_path)
+
+
     def __del__(self):
         self.close()
 
@@ -86,7 +86,8 @@ class SSHConnection(object):
 
 ssh = SSHConnection(host1)
 ssh.connect()
-ssh.run_cmd("mkdir 111")
+#由于FTP目录结构存在中文，需要在window资源管理器里打开FTP并复制路径
+ssh.upload("C:\\Users\\Administrator\\Desktop\\20200910-etc\\kwe-manager-webapp-1.0.0.jar", "/root/kwe-manager-webapp-1.0.0.jar")
 
 
 
