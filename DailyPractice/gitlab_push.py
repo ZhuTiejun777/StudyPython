@@ -1,7 +1,8 @@
 import gitlab, time
-from dub_script.logging_manage import my_log
+#from dub_script.logging_manage import my_log
 
-logger = my_log("gitlab_push")
+#logger = my_log("gitlab_push")
+print("gitlab_push")
 url = 'http://192.168.8.79:8081/'
 # token = 'fJirgXn1e9GuDk8t-YCn'
 token = 'QtRTnbBJyf1nZxbpM111'
@@ -32,10 +33,12 @@ class gitlab_operation(object):
             mr.save()
             mr.merge()
         except Exception as e:
-            logger.error(project_name + "出现错误，错误如下：\n" + str(e))
+            #logger.error(project_name + "出现错误，错误如下：\n" + str(e))
+            print(project_name + "出现错误，错误如下：\n" + str(e))
             self.merge_tag = False
         else:
-            logger.info(project_name + "合并成功，合并标题为：" + merge_tile)
+            #logger.info(project_name + "合并成功，合并标题为：" + merge_tile)
+            print(project_name + "合并成功，合并标题为：" + merge_tile)
             self.merge_tag = True
         # 1表示合并成功，可以后续打tag，0则表示合并失败，后续不打tag
         return self.merge_tag
@@ -54,15 +57,16 @@ class gitlab_operation(object):
             new_tag_name = "tag_" + time.strftime("%Y%m%d") + "_V2.0." + "{0:0>2}".format(version_num)
             tag = project.tags.create({'tag_name': new_tag_name, 'ref': 'master'})
             tag.set_release_description(tag_description)
-            logger.info(project_name + "打tag成功" + new_tag_name)
+            #logger.info(project_name + "打tag成功" + new_tag_name)
+            print(project_name + "打tag成功" + new_tag_name)
 
         # 如果第一次打tag
         else:
             new_tag_name = "tag_" + time.strftime("%Y%m%d") + "_V2.0.01"
             tag = project.tags.create({'tag_name': new_tag_name, 'ref': 'master'})
             tag.set_release_description(tag_description)
-            logger.info(project_name + "打tag成功" + new_tag_name)
-
+            #logger.info(project_name + "打tag成功" + new_tag_name)
+            print(project_name + "打tag成功" + new_tag_name)
 
 if __name__ == "__main__":
     # git工程格式为"app_name":app_dic[project_name]
@@ -85,8 +89,10 @@ if __name__ == "__main__":
     }
     gitlab_handle = gitlab_operation()
     for i, j in app_dic.items():
-        logger.info("开始处理" + i + str(j) + "项目")
+        #logger.info("开始处理" + i + str(j) + "项目")
+        print("开始处理" + i + str(j) + "项目")
         if gitlab_handle.gitlab_merge(i, dec_message):
             gitlab_handle.gitlab_tag(i, dec_message)
         else:
-            logger.info(i + "合并失败，请手动打tag")
+            #logger.info(i + "合并失败，请手动打tag")
+            print(i + "合并失败，请手动打tag")
