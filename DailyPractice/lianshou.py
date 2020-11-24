@@ -12,11 +12,6 @@ from selenium.webdriver.chrome.options import Options
 
 
 
-
-
-
-
-
 # path = os.path.abspath(os.path.dirname(__file__))
 # url ='https://www.52bqg.com/book_11276/5824305.html'
 #
