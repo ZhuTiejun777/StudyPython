@@ -2,8 +2,8 @@
 #-*-by zhutj 20200616-*-
 from datetime import datetime
 
-from Tools import getagodate, getdatewrite, adddict, getjson, statisticdata, backupsfile, writedata
-from data import URL, HEADERS, DATA
+from SpiderTestCase.Tools import getagodate, getdatewrite, adddict, getjson, statisticdata, backupsfile, writedata
+from SpiderTestCase.data import URL, HEADERS, DATA
 
 # 获取json数据
 response_json = getjson(url=URL, headers=HEADERS, data=DATA)
