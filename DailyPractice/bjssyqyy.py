@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-# ☯ Author: ChinaPython
-# ☯ Email : chinapython@yeah.net
-# ☯ Date  : 2020/12/27 20:13
+
 import os
 import time
 import random

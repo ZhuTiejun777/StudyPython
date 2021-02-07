@@ -6,6 +6,16 @@
 # import pymysql
 # import re
 #
+
+member = 14
+str = "sed -i 's/member:7/member:%d/g' /etc/kubernetes/yaml/etc/kwl-member.yaml" % member
+#print(str)
+
+strformat = "sed -i 's/member:7/member:{0}/g' /etc/kubernetes/yaml/etc/kwl-member.yaml".format(member)
+#print(strformat)
+
+replaceCommand = "/etc/kubernetes/yaml/etc/applymember.sh {0}".format(member)
+print(replaceCommand)
 # db = pymysql.connect(host="192.168.3.110",port=3306,
 #                        user="root",password="zjport",
 #                        database="tsn",charset="utf8")

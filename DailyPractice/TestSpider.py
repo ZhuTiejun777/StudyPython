@@ -3,6 +3,8 @@ import os
 import time
 from logging import handlers
 
+import pymysql
+
 
 class LogGer(object):
     def __init__(self, name):
@@ -11,8 +13,7 @@ class LogGer(object):
         get_logger_a.setLevel(logging.INFO)  # 设置默认级别
         formatter = logging.Formatter('%(levelname)s %(asctime)s %(filename)s[line:%(lineno)d]: %(message)s')
         log_file_path = './log/{}_{}.log'.format(name, time.strftime('%Y%m%d'))
-        rotating_handler = handlers.RotatingFileHandler(
-            log_file_path, maxBytes=20 * 1024 * 1024, backupCount=10, encoding='utf-8')
+        rotating_handler = handlers.RotatingFileHandler(log_file_path, maxBytes=20 * 1024 * 1024, backupCount=10, encoding='utf-8')
         rotating_handler.setFormatter(formatter)
         get_logger_a.addHandler(rotating_handler)
         stream_handler = logging.StreamHandler()
@@ -73,3 +74,5 @@ class MedicalSpider:
         return sum([a for (_, a) in [self.__insert(table, item) for item in items] if a])
 
 
+if __name__ == '__main__':
+    print("test")

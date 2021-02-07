@@ -2,10 +2,13 @@
 # by zhutj 20200518
 # from kwl-banking-ccb
 # python ${WORKSPACE}/TestConfig/SSHkwl-member.py
+import sys
 import paramiko
 
 host = {"host": "192.168.1.18", "port": 22, "username": "root", "password": "zjport"}
 
+newVersion = sys.argv[1]
+replaceCommand = "/etc/kubernetes/yaml/etc/applymember.sh {0}".format(newVersion)
 
 class SSHConnection(object):
 
@@ -40,14 +43,6 @@ class SSHConnection(object):
 mycon = SSHConnection(host)
 mycon.connect()
 
-mycon.run_cmd("nohup ps -ef|grep member-8081|grep -v grep|awk '{print $2}'|xargs kill -9")
-
-mycon.run_cmd(
-    "rm -rf /usr/local/etc-member/member-8081/webapps/member.war /usr/local/etc-member/member-8081/webapps/member")
-
-mycon.run_cmd(
-    "wget http://192.168.3.239:8081/view/%E6%9C%B1%E9%93%81%E5%90%9B/job/KWL-V1.0_member\(ETC%E5%90%8E%E5%8F%B0%E4%BC%9A%E5%91%98%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E6%9C%B1%E9%93%81%E5%90%9B\)/ws/kwl-multiproject/kwl-webapps-member/target/member.war -O /usr/local/etc-member/member-8081/webapps/member.war")
-
-mycon.run_cmd("export JAVA_HOME=/usr/local/jdk/jdk1.8.0_121; nohup /usr/local/etc-member/member-8081/bin/startup.sh")
+mycon.run_cmd(replaceCommand)
 
 mycon.close()
