@@ -13,7 +13,7 @@ from logging import handlers
 # 日志模块
 class LogGer(object):
     def __init__(self, name):
-        os.makedirs("../log") if not os.path.exists("../log") else None  # 创建日志文件文件夹
+        os.makedirs("../log") if not os.path.exists("../../log") else None  # 创建日志文件文件夹
         get_logger_a = logging.getLogger()
         get_logger_a.setLevel(logging.INFO)  # 设置默认级别
         formatter = logging.Formatter('%(levelname)s %(asctime)s %(filename)s[line:%(lineno)d]: %(message)s')

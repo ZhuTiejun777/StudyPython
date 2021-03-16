@@ -6,8 +6,7 @@
  nohup /usr/local/tomcat/tomcat7.0_jdk1.7_8086/AutoUpdate/updateShell.sh >/usr/local/tomcat/tomcat7.0_jdk1.7_8086/AutoUpdate/updateShell.log 2>&1
  2、存放的日志注明命名，多个的情况下要区分
 """
-import ssh
-import re
+from jenkins import ssh
 import time
 
 #----------------------变量定义start-----------------------
@@ -31,7 +30,7 @@ class SSHCon:
 		self.chan=self.myclient.invoke_shell()#新函数
 		return None	
 	def cmd(self,cmd):
-		print cmd	
+		print(cmd)
 		self.chan.send(cmd)		
 		time.sleep(1)
 	def close(self):

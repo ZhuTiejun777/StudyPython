@@ -1,4 +1,4 @@
-from srjbxx import jbxxlr, script, csh, dyywbh
+from atuo.srjbxx import jbxxlr, script, csh, dyywbh
 import os
 
 Path = os.path.dirname(os.path.abspath(__file__))
