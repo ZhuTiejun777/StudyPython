@@ -5,7 +5,7 @@ import gitlab, time
 print("gitlab_push")
 url = 'http://192.168.8.79:8081/'
 # token = 'fJirgXn1e9GuDk8t-YCn'
-token = 'QtRTnbBJyf1nZxbpM111'
+token = 'P8JVoExKCn8-oydS8sRz'
 
 # 登录
 gl = gitlab.Gitlab(url, token)
@@ -71,13 +71,13 @@ class gitlab_operation(object):
 if __name__ == "__main__":
     # git工程格式为"app_name":app_dic[project_name]
     app_dic = {
-        "tsn-webapp-ui": 251,       # 易豹货代前端VUE
+        "kwe": 63,       # 易豹货代前端VUE
         # "tsn-analysis": 211,        # 统一分析查询应用
         # "tsn-inspection": 208,      # 商检待办应用模块
         # "tsn-report": 170,          # 报表应用
         # "tsn-finance": 168,         # 财务模块应用
         # "tsn-uct": 167,             # 基础用户、客户类信息维护应用
-        "tsn-shipping-export": 165,  # 海运出口业务应用
+        "kwl": 62,  # 海运出口业务应用
         # "tsn-fee": 161,             # 费用业务应用
         # "tsn-air-export": 145,      # 空运出口
         # "tsn-air-import": 144,      # 空运进口
