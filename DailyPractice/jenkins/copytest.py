@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# 施锦伟 2017/3/10
+# zhutj 2019/3/10
 import sys,shutil
 
 #-------以workspace为相对路径，定义要复制文件源、目的路路径------
