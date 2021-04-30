@@ -282,7 +282,7 @@ class SqlPerform(object):
         return int(count)
 
 
-def contrastData(recordId):
+def contrastData(recordId:str):
     # agree = 0
     agreeList = []
     # unagree = 0
@@ -307,10 +307,8 @@ def contrastData(recordId):
                     # 备份数据判断
                     agreeTempList, unAgreeTempList = contrastTable(storeId, recordId, dbId, dbName, listTable,
                                                                    listDirName)
-                    agreeList.append(agreeTempList)
-                    unAgreeList.append(unAgreeTempList)
-                    # 重置数据库连接连接
-                    SqlPerform.performTargetIsNone()
+                    agreeList.extend(agreeTempList)
+                    unAgreeList.extend(unAgreeTempList)
                 else:
                     logging.info("{}:备份表没数据，排除表有数据".format(dbName))
                     # 获取指定数据库所有表
@@ -320,10 +318,8 @@ def contrastData(recordId):
                     # 备份数据判断
                     agreeTempList, unAgreeTempList = contrastTable(storeId, recordId, dbId, dbName, listTable,
                                                                    listDirName)
-                    agreeList.append(agreeTempList)
-                    unAgreeList.append(unAgreeTempList)
-                    # 重置数据库连接连接
-                    SqlPerform.performTargetIsNone()
+                    agreeList.extend(agreeTempList)
+                    unAgreeList.extend(unAgreeTempList)
             else:
                 # 判断排除表是否有数据
                 if SqlPerform.getExcludeTables(storeId, dbId).strip() == "" or SqlPerform.getExcludeTables(storeId,
@@ -338,10 +334,9 @@ def contrastData(recordId):
                     # 备份数据判断
                     agreeTempList, unAgreeTempList = contrastTable(storeId, recordId, dbId, dbName, listTable,
                                                                    listDirName)
-                    agreeList.append(agreeTempList)
-                    unAgreeList.append(unAgreeTempList)
+                    agreeList.extend(agreeTempList)
+                    unAgreeList.extend(unAgreeTempList)
                     # 重置数据库连接连接
-                    SqlPerform.performTargetIsNone()
                 else:
                     logging.info("{}:备份表没有数据，排除表没有数据".format(dbName))
                     # 获取备份表字段值
@@ -357,16 +352,16 @@ def contrastData(recordId):
                     # 备份数据判断
                     agreeTempList, unAgreeTempList = contrastTable(storeId, recordId, dbId, dbName, listTable,
                                                                    listDirName)
-                    agreeList.append(agreeTempList)
-                    unAgreeList.append(unAgreeTempList)
-                    # 重置数据库连接连接
-                    SqlPerform.performTargetIsNone()
+                    agreeList.extend(agreeTempList)
+                    unAgreeList.extend(unAgreeTempList)
+            # 重置数据库连接连接
+            SqlPerform.performTargetIsNone()
     # logging.info("{}表数据一致".format(agreeList))
     logging.error("{}表数据不一致".format(unAgreeList))
 
 
 # 备份数据判断
-def contrastTable(storeId, recordId, dbId, dbName, listTable, listDirName):
+def contrastTable(storeId:str, recordId:str, dbId:str, dbName:str, listTable:list, listDirName:list):
     agreeList = []
     unagreeList = []
     diffList = [y for y in (listTable + listDirName) if
@@ -399,22 +394,25 @@ def contrastTable(storeId, recordId, dbId, dbName, listTable, listDirName):
 
 
 # 根据正则匹配表名返回排除表
-def getExcludeListRe(reStrs: str, tableList: list):
+def getExcludeListRe(reStrs:str, tableList:list):
     reListTable = []
     for reStr in reStrs.split(";"):
         for table in tableList:
             # TODO 匹配方式与项目不符
             pattern = re.compile(reStr)
             result = pattern.findall(table)
-            # logging.info("正则规则:{},表名:{},匹配后的结果:{}".format(reStr, table, result))
-            if len(result) == 0 or result[0] != table:
+            if len(result) != 0:
+                logging.info("正则规则:{},表名:{},匹配后的结果:{}".format(reStr, table, result))
                 reListTable.append(table)
-    logging.info("匹配后的表{}".format(reListTable))
-    return reListTable
+    reListTable = list(set(reListTable))
+    for listTemp in reListTable:
+        tableList.remove(listTemp)
+    logging.info("匹配后的表{}".format(tableList))
+    return tableList
 
 
 # 根据正则匹配表名返回备份表
-def getIncludeListRe(reStrs: str, tableList: list):
+def getIncludeListRe(reStrs:str, tableList:list):
     reListTable = []
     for reStr in reStrs.split(";"):
         for table in tableList:
@@ -475,7 +473,7 @@ if __name__ == '__main__':
 
     # print(len(SqlPerform.getAllTable("223841724437364736", "library")))
     # 224466023431012352  #225644756347125760
-    contrastData("225981383263125504")
+    contrastData("228474469973229568")
     # contrastData("225642346576871424", "224466023431012352", "223826490662322176")
     # tableCount = SqlPerform.getTableCount("223841724437364736", "admin")
     # dirCount = SSHConnection.getDirCount("225547359029821440", "224169917165862912", "223841724437364736", "library", "admin")

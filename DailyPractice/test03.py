@@ -137,6 +137,22 @@ class test03(unittest.TestCase):
         strList = "[{'id': '225996227458629632', 'analyseName': '自动化测试', 'comment': '自动化测试分析说明', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226000301281247232', 'analyseName': 'qajgqixerqmssafxtq', 'comment': '俒莩骾楟鶎鉎獹寜疄勠', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226004390534709248', 'analyseName': 'rwaiplqrnwikvxxlgc', 'comment': '淘酨鉄彽摱桇霖緆嵼筟', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226004914726240256', 'analyseName': 'utomlrvqdchafswlew', 'comment': '臯褱记旿楋戄饁拂筏纻', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226012107840159744', 'analyseName': 'pmcvhzlcxhdwwomntc', 'comment': '臡倛昶蹦熜義蠸咮縚泍', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226012233669279744', 'analyseName': 'ilhbkbngcrmhdmkcwy', 'comment': '懣罌関溟龏冧獸厧龃邽', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226013093526765568', 'analyseName': 'cbxchzmqbaupgwzizx', 'comment': '縿裘纂郖耙孛癣鯱泩者', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226018650966982656', 'analyseName': 'lwzbkdyswtvyxkscba', 'comment': '燞稧屓菫緲鹘憘舛始訕', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226019447956045824', 'analyseName': 'qujttdbqzywxktjvxymkbcgyuiwe', 'comment': '鬚疖姤趓偸部蝭孔瞾慳蛅軮糆靶菁尷零鵱懂倊', 'analyseStatus': '02', 'analyseMessage': '分析通过'}, {'id': '226019846419120128', 'analyseName': 'zjihtnskcvwrqjrhkvsmfnwluqjj', 'comment': '顰族禥脘鋼瘜白辜皞鰟槔釗瀂揨虋惰諓擸氓矅', 'analyseStatus': '02', 'analyseMessage': '分析通过'}]"
         print(len(list(strList)))
 
+    @staticmethod
+    def test17():
+        list1 = ["sss","ttt"]
+        list2 = ["kkk", "111"]
+        return list1, list2
+
+    def test14(self):
+        list5, list6 = test03.test17()
+        list = []
+        list.extend(list5)
+        print(list)
+
+    def test15(self):
+        print(
+            random.randint(1000000000, 2147483647)
+        )
 
 class SSHConnection(object):
 

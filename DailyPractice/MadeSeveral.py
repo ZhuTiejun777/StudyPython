@@ -35,10 +35,4 @@ def randomLengthInt(length:int=10):
         length -= 1
     return intStr
 
-#def randomTest(length:int=10, *arg:()):
 
-
-if __name__ == '__main__':
-    print(randomChinese(32))
-    print(randomEnglish(32))
-    print(randomLengthInt(10))
