@@ -5,7 +5,8 @@ import argparse
 import datetime
 import threading
 import os
-from lib.utils import print_message
+
+from jvm.utils import print_message
 
 
 class JVMError(Exception):
